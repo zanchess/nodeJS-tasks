@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-tasks",
+  "version": "1.0.0",
+  "description": "\"My node js learning\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zanchess/nodeJS-tasks.git"
+  },
+  "author": "Aliaksandr Lashkevich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zanchess/nodeJS-tasks/issues"
+  },
+  "homepage": "https://github.com/zanchess/nodeJS-tasks#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
