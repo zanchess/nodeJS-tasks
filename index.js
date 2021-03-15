@@ -1,10 +1,10 @@
-const reverseString = (string) => string.split( " " ).map(s => s.split("").reverse().join( "" )).join( " " );
+const getReversedString = require('./utils/get-reverse-string');
 
-process.stdout.write('Write any string for reversing: ');
+process.stdout.write('Input any string for reversing: ');
 
 process.stdin.on('data', (data) => {
-  let reversedString = reverseString(data.toString());
+  let reversedString = getReversedString(data.toString());
 
-  process.stdout.write(`${reversedString}`);
+  process.stdout.write(`${reversedString} \n Input string yet: `);
 
 });
