@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/zanchess/nodeJS-tasks/issues"
   },
-  "homepage": "https://github.com/zanchess/nodeJS-tasks#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+  "homepage": "https://github.com/zanchess/nodeJS-tasks#readme"
 }
