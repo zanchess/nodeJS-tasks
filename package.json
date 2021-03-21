@@ -4,7 +4,8 @@
   "description": "\"My node js learning\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --exec babel-node index.js",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,13 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "jui": "^2.0.3",
+    "jui-chart": "^2.0.4",
+    "jui-core": "^2.0.4",
+    "jui-grid": "^2.0.2",
+    "uuid": "^8.3.2"
   }
 }
