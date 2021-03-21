@@ -11,7 +11,13 @@
         "ecmaVersion": 12
     },
     "rules": {
-      "treatUndefinedAsUnspecified": false
+      "no-console": "off",
+        "no-restricted-syntax": [
+            "error",
+            {
+                "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+                "message": "Unexpected property on console object was called"
+            }
+        ]
     }
-    
 }
