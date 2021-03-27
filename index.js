@@ -1,9 +1,9 @@
-/* eslint-disable consistent-return */
 require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { v1: uuidv1 } = require('uuid');
 
 const app = express();
 
@@ -12,14 +12,14 @@ const port = process.env.LOCAL_HOST;
 const db = {
   users: [
     {
-      id: 1,
+      id: uuidv1(),
       login: 'Alex',
       password: 'qwerty',
       age: '23',
       isDeleted: false,
     },
     {
-      id: 2,
+      id: uuidv1(),
       login: 'Neal',
       password: '12345678',
       age: '30',
@@ -40,8 +40,26 @@ app.get('/users', (request, response) => {
   console.log('111');
 });
 
-app.post('/users', (req, res, next) => {
-  console.log(req.body);
+app.get('/users/:id', (req, res) => {
+  const { id } = req.params;
+
+  console.log(`id: ${id}`);
+
+  const userObject = db.users.find((user) => user.id === id && !user.isDeleted);
+  res.send(JSON.stringify(userObject));
+});
+
+app.post('/users', (req, res) => {
+  const newUserBody = req.body;
+  if (db.users.some((user) => user.login === newUserBody.login)) {
+    res.send('This user already created');
+  } else {
+    const newUser = {
+      id: uuidv1(),
+      ...newUserBody,
+    };
+    res.send(newUser);
+  }
 });
 
 app.put('/users/:id', (req, res) => {
