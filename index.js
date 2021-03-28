@@ -1,43 +1,36 @@
-require('dotenv').config();
+// Addition .env config file
+import dotenv from 'dotenv';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { v1: uuidv1 } = require('uuid');
+// Addition packages in project
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
+dotenv.config();
+
+// Addition database
+const db = require('./db/db');
+
+// classes
+const User = require('./utils/createUser');
+
+// Create server
 const app = express();
-
 const port = process.env.LOCAL_HOST;
 
-const db = {
-  users: [
-    {
-      id: uuidv1(),
-      login: 'Alex',
-      password: 'qwerty',
-      age: '23',
-      isDeleted: false,
-    },
-    {
-      id: uuidv1(),
-      login: 'Neal',
-      password: '12345678',
-      age: '30',
-      isDeleted: false,
-    },
-  ],
-};
-
+// Middlewears
 app.use('/users', bodyParser.json());
 app.use(cors());
 
+// GET requests
 app.get('/', (request, response) => {
-  response.send('Hello from Express!');
+  response.send('Main Page');
 });
 
-app.get('/users', (request, response) => {
-  response.send(JSON.stringify(db.users));
-  console.log('111');
+app.get('/users', (req, res) => {
+  const { users } = db;
+  console.log(req.query);
+  res.send(JSON.stringify(users));
 });
 
 app.get('/users/:id', (req, res) => {
@@ -49,23 +42,37 @@ app.get('/users/:id', (req, res) => {
   res.send(JSON.stringify(userObject));
 });
 
+// POST requests
 app.post('/users', (req, res) => {
-  const newUserBody = req.body;
-  if (db.users.some((user) => user.login === newUserBody.login)) {
+  const { login, password, age } = req.body;
+  if (db.users.some((user) => user.login === login && !user.isDeleted)) {
     res.send('This user already created');
+  } else if (db.users.some((user) => user.login === login && user.isDeleted)) {
+    res.send('This user already was deleted');
   } else {
-    const newUser = {
-      id: uuidv1(),
-      ...newUserBody,
-    };
-    res.send(newUser);
+    const newUser = new User(login, password, age);
+    db.users.push(newUser);
+    res.send(db.users);
   }
 });
 
+// PUT requests
 app.put('/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   console.log(id);
 });
+
+/* app.put('/users/:id', , (req, res) => {
+  if (req.userData.role === 'superadmin') {
+    const id = req.userData.userId;
+    User.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true }, (err, doc) => {
+      if (err) return res.send(err.message);
+      if (doc) return res.send(doc);
+    });
+  } else {
+
+  }
+}); */
 
 app.delete('/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
