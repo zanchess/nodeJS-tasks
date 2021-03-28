@@ -1,27 +1,27 @@
-const { v1: uuidv1 } = require('uuid');
+import u1 from 'uuid';
 
 const db = {
   users: [
     {
-      id: uuidv1(),
+      id: u1(),
       login: 'Alex',
       password: 'qwerty',
       age: '23',
       isDeleted: false,
     },
     {
-      id: uuidv1(),
+      id: u1(),
       login: 'Neal',
       password: '12345678',
       age: '30',
       isDeleted: true,
     },
-    /*     {
-      login: 'Neal',
+    {
+      login: 'Neal1',
       password: '12345678',
       age: '30',
-    }, */
+    },
   ],
 };
 
-module.exports = db;
+export default db;

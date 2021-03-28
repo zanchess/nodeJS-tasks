@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import mainPageHandler from './handlers/main-page';
+import getUsersHandler from './handlers/get-users';
 
 dotenv.config();
 
@@ -23,15 +25,9 @@ app.use('/users', bodyParser.json());
 app.use(cors());
 
 // GET requests
-app.get('/', (request, response) => {
-  response.send('Main Page');
-});
+app.get('/', mainPageHandler);
 
-app.get('/users', (req, res) => {
-  const { users } = db;
-  console.log(req.query);
-  res.send(JSON.stringify(users));
-});
+app.get('/users', getUsersHandler);
 
 app.get('/users/:id', (req, res) => {
   const { id } = req.params;
