@@ -5,16 +5,9 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import mainPageHandler from './handlers/main-page';
-import getUsersHandler from './handlers/get-users';
+import { getMainPageHandler, getUsersHandler, getUserById, createNewUser } from './controllers/users';
 
 dotenv.config();
-
-// Addition database
-const db = require('./db/db');
-
-// classes
-const User = require('./utils/createUser');
 
 // Create server
 const app = express();
@@ -25,38 +18,20 @@ app.use('/users', bodyParser.json());
 app.use(cors());
 
 // GET requests
-app.get('/', mainPageHandler);
+app.get('/', getMainPageHandler);
 
 app.get('/users', getUsersHandler);
 
-app.get('/users/:id', (req, res) => {
-  const { id } = req.params;
-
-  console.log(`id: ${id}`);
-
-  const userObject = db.users.find((user) => user.id === id && !user.isDeleted);
-  res.send(JSON.stringify(userObject));
-});
+app.get('/users/:id', getUserById);
 
 // POST requests
-app.post('/users', (req, res) => {
-  const { login, password, age } = req.body;
-  if (db.users.some((user) => user.login === login && !user.isDeleted)) {
-    res.send('This user already created');
-  } else if (db.users.some((user) => user.login === login && user.isDeleted)) {
-    res.send('This user already was deleted');
-  } else {
-    const newUser = new User(login, password, age);
-    db.users.push(newUser);
-    res.send(db.users);
-  }
-});
+app.post('/users', createNewUser);
 
-// PUT requests
+/* // PUT requests
 app.put('/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   console.log(id);
-});
+}); */
 
 /* app.put('/users/:id', , (req, res) => {
   if (req.userData.role === 'superadmin') {

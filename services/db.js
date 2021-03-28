@@ -1,16 +1,16 @@
-import u1 from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const db = {
   users: [
     {
-      id: u1(),
+      id: '1a',
       login: 'Alex',
       password: 'qwerty',
       age: '23',
       isDeleted: false,
     },
     {
-      id: u1(),
+      id: uuidv4(),
       login: 'Neal',
       password: '12345678',
       age: '30',
