@@ -35,9 +35,34 @@ const pushNewUser = (body) => {
   return users;
 };
 
+const updateUserInDatabase = (id, login, password, age) => {
+  const { users } = db;
+  console.log(id);
+  if (users.some((user) => user.id === id && !user.isDeleted)) {
+    const index = users.indexOf(users.find((user) => user.id === id));
+
+    const newUser = new User(id, login, password, age);
+    users[index] = newUser;
+    return users;
+  }
+  return 'Users not found or was deleted';
+};
+
+const setDeletedUser = (id) => {
+  const { users } = db;
+  if (users.some((user) => user.id === id && !user.isDeleted)) {
+    const user = users.find((item) => item.id === id);
+    user.isDeleted = true;
+    return users;
+  }
+  return 'Users not found or was deleted';
+};
+
 export {
   getUsers,
   mainPage,
   findUserById,
   pushNewUser,
+  updateUserInDatabase,
+  setDeletedUser,
 };

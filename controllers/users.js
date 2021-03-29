@@ -1,4 +1,11 @@
-import { findUserById, getUsers, mainPage, pushNewUser } from '../services/users';
+import {
+  findUserById,
+  getUsers,
+  mainPage,
+  pushNewUser,
+  updateUserInDatabase,
+  setDeletedUser,
+} from '../services/users';
 
 const getMainPageHandler = (req, res) => {
   const message = mainPage();
@@ -27,9 +34,28 @@ const createNewUser = (req, res) => {
   res.send(JSON.stringify(users));
 };
 
+const updateUser = (req, res) => {
+  const { id } = req.params;
+  const { login, password, age } = req.body;
+
+  const users = updateUserInDatabase(id, login, password, age);
+  res.status(200);
+  res.send(users);
+};
+
+const deleteUser = (req, res) => {
+  const { id } = req.params;
+  const updatedUsers = setDeletedUser(id);
+
+  res.status(200);
+  res.send(updatedUsers);
+};
+
 export {
   getUsersHandler,
   getMainPageHandler,
   getUserById,
   createNewUser,
+  updateUser,
+  deleteUser,
 };

@@ -5,7 +5,14 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { getMainPageHandler, getUsersHandler, getUserById, createNewUser } from './controllers/users';
+import {
+  getMainPageHandler,
+  getUsersHandler,
+  getUserById,
+  createNewUser,
+  updateUser,
+  deleteUser,
+} from './controllers/users';
 
 dotenv.config();
 
@@ -27,28 +34,11 @@ app.get('/users/:id', getUserById);
 // POST requests
 app.post('/users', createNewUser);
 
-/* // PUT requests
-app.put('/users/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  console.log(id);
-}); */
+// PUT requests
+app.put('/users/:id', updateUser);
 
-/* app.put('/users/:id', , (req, res) => {
-  if (req.userData.role === 'superadmin') {
-    const id = req.userData.userId;
-    User.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true }, (err, doc) => {
-      if (err) return res.send(err.message);
-      if (doc) return res.send(doc);
-    });
-  } else {
-
-  }
-}); */
-
-app.delete('/users/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  console.log(id);
-});
+// DELETE requests
+app.delete('/users/:id', deleteUser);
 
 app.listen(port, (err) => {
   if (err) {

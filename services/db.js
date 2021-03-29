@@ -17,9 +17,32 @@ const db = {
       isDeleted: true,
     },
     {
+      id: uuidv4(),
       login: 'Neal1',
       password: '12345678',
       age: '30',
+      isDeleted: false,
+    },
+    {
+      id: uuidv4(),
+      login: 'Otto',
+      password: '12345678',
+      age: '30',
+      isDeleted: false,
+    },
+    {
+      id: uuidv4(),
+      login: 'Yan',
+      password: '12345678',
+      age: '30',
+      isDeleted: false,
+    },
+    {
+      id: uuidv4(),
+      login: 'Boris',
+      password: '12345678',
+      age: '30',
+      isDeleted: false,
     },
   ],
 };
