@@ -5,6 +5,7 @@ import {
   pushNewUser,
   updateUserInDatabase,
   setDeletedUser,
+  getAutoSuggestUsers,
 } from '../services/users';
 
 const getMainPageHandler = (req, res) => {
@@ -14,6 +15,14 @@ const getMainPageHandler = (req, res) => {
 };
 
 const getUsersHandler = (req, res) => {
+  const { loginSubstring, limit } = req.query;
+
+  if (loginSubstring && limit) {
+    const limitedUsers = getAutoSuggestUsers(loginSubstring, limit);
+
+    res.status(200);
+    res.send(limitedUsers);
+  }
   const users = getUsers();
   res.status(200);
   res.send(JSON.stringify(users));

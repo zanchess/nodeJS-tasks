@@ -6,6 +6,13 @@ const getUsers = () => {
   return users;
 };
 
+const getAutoSuggestUsers = (loginSubstring, limit) => {
+  const { users } = db;
+  const limitedUsers = users.slice(0, +limit);
+
+  return JSON.stringify(limitedUsers);
+};
+
 const mainPage = () => {
   const message = 'Main page';
 
@@ -16,7 +23,7 @@ const findUserById = (id) => {
   const { users } = db;
   const userInfoById = users.find((user) => user.id === id && !user.isDeleted);
 
-  return userInfoById;
+  return JSON.parse(userInfoById);
 };
 
 const pushNewUser = (body) => {
@@ -65,4 +72,5 @@ export {
   pushNewUser,
   updateUserInDatabase,
   setDeletedUser,
+  getAutoSuggestUsers,
 };
