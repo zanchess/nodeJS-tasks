@@ -28,7 +28,7 @@ const getUsersHandler = (req, res) => {
   res.send(JSON.stringify(users));
 };
 
-const getUserById = (req, res) => {
+const getUserByIdHandler = (req, res) => {
   const { id } = req.params;
   const userInfo = findUserById(id);
 
@@ -36,35 +36,35 @@ const getUserById = (req, res) => {
   res.send(JSON.stringify(userInfo));
 };
 
-const createNewUser = (req, res) => {
+const createNewUserHandler = (req, res) => {
   const users = pushNewUser(req.body);
 
   res.status(200);
   res.send(JSON.stringify(users));
 };
 
-const updateUser = (req, res) => {
+const updateUserHandler = (req, res) => {
   const { id } = req.params;
   const { login, password, age } = req.body;
 
   const users = updateUserInDatabase(id, login, password, age);
   res.status(200);
-  res.send(users);
+  res.send(JSON.stringify(users));
 };
 
-const deleteUser = (req, res) => {
+const deleteUserHandler = (req, res) => {
   const { id } = req.params;
   const updatedUsers = setDeletedUser(id);
 
   res.status(200);
-  res.send(updatedUsers);
+  res.send(JSON.stringify(updatedUsers));
 };
 
 export {
   getUsersHandler,
   getMainPageHandler,
-  getUserById,
-  createNewUser,
-  updateUser,
-  deleteUser,
+  getUserByIdHandler,
+  createNewUserHandler,
+  updateUserHandler,
+  deleteUserHandler,
 };

@@ -10,7 +10,7 @@ const getAutoSuggestUsers = (loginSubstring, limit) => {
   const { users } = db;
   const limitedUsers = users.slice(0, +limit);
 
-  return JSON.stringify(limitedUsers);
+  return limitedUsers;
 };
 
 const mainPage = () => {
@@ -23,7 +23,7 @@ const findUserById = (id) => {
   const { users } = db;
   const userInfoById = users.find((user) => user.id === id && !user.isDeleted);
 
-  return JSON.parse(userInfoById);
+  return userInfoById;
 };
 
 const pushNewUser = (body) => {

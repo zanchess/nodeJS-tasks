@@ -3,15 +3,14 @@ import dotenv from 'dotenv';
 
 // Addition packages in project
 import express from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import {
   getMainPageHandler,
   getUsersHandler,
-  getUserById,
-  createNewUser,
-  updateUser,
-  deleteUser,
+  getUserByIdHandler,
+  createNewUserHandler,
+  updateUserHandler,
+  deleteUserHandler,
 } from './controllers/users';
 
 dotenv.config();
@@ -19,26 +18,23 @@ dotenv.config();
 // Create server
 const app = express();
 const port = process.env.LOCAL_HOST;
+const router = express.Router();
 
 // Middlewears
-app.use('/users', bodyParser.json());
 app.use(cors());
+app.use(router);
 
-// GET requests
-app.get('/', getMainPageHandler);
+router.route('/users')
+  .get(getUsersHandler)
+  .post(createNewUserHandler);
 
-app.get('/users', getUsersHandler);
+router.route('/users/:id')
+  .get(getUserByIdHandler)
+  .put(updateUserHandler)
+  .delete(deleteUserHandler);
 
-app.get('/users/:id', getUserById);
-
-// POST requests
-app.post('/users', createNewUser);
-
-// PUT requests
-app.put('/users/:id', updateUser);
-
-// DELETE requests
-app.delete('/users/:id', deleteUser);
+router.route('/')
+  .get(getMainPageHandler);
 
 app.listen(port, (err) => {
   if (err) {
