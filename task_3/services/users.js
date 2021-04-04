@@ -20,8 +20,7 @@ const findUserById = (id) => {
   return userInfoById;
 };
 
-const pushNewUser = (body) => {
-  const { login, password, age } = body;
+const pushNewUser = (login, password, age) => {
   const { users } = db;
 
   if (users.some((user) => user.login === login && !user.isDeleted)) {

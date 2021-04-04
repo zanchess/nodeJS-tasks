@@ -1,3 +1,4 @@
+import userSchema from '../schemas/validation';
 import {
   findUserById,
   getUsers,
@@ -45,8 +46,9 @@ const getUsersHandler = (req, res) => {
 };
 
 const getUserByIdHandler = (req, res) => {
+  const { id } = req.params;
+
   try {
-    const { id } = req.params;
     const userInfo = findUserById(id);
 
     res.status(200);
@@ -59,9 +61,12 @@ const getUserByIdHandler = (req, res) => {
   }
 };
 
-const createNewUserHandler = (req, res) => {
+const createNewUserHandler = async (req, res) => {
+  const { login, password, age } = req.body;
+
   try {
-    const users = pushNewUser(req.body);
+    await userSchema.validateAsync({ login, password, age });
+    const users = pushNewUser(login, password, age);
 
     res.status(200);
     res.send(JSON.stringify(users));
@@ -73,10 +78,12 @@ const createNewUserHandler = (req, res) => {
   }
 };
 
-const updateUserHandler = (req, res) => {
+const updateUserHandler = async (req, res) => {
+  const { id } = req.params;
+  const { login, password, age } = req.body;
+
   try {
-    const { id } = req.params;
-    const { login, password, age } = req.body;
+    await userSchema.validateAsync({ login, password, age });
     const users = updateUserInDatabase(id, login, password, age);
 
     res.status(200);
@@ -90,8 +97,9 @@ const updateUserHandler = (req, res) => {
 };
 
 const deleteUserHandler = (req, res) => {
+  const { id } = req.params;
+
   try {
-    const { id } = req.params;
     const updatedUsers = setDeletedUser(id);
 
     res.status(200);
