@@ -11,7 +11,7 @@ import {
   createNewUserHandler,
   updateUserHandler,
   deleteUserHandler,
-} from './controllers/users';
+} from './task_3/controllers/users';
 
 dotenv.config();
 
