@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 // Addition packages in project
 import express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import {
   getMainPageHandler,
   getUsersHandler,
@@ -21,9 +22,16 @@ const port = process.env.LOCAL_HOST || 3001;
 const router = express.Router();
 
 // Middlewears
-app.use(cors());
 app.use(router);
+router.use('/users', bodyParser.json());
+router.use('/users/:id', bodyParser.json());
+router.use(cors());
+router.use((req, res, next) => {
+  res.header('Content-Type', 'application/json');
+  next();
+});
 
+// Route handling
 router.route('/users')
   .get(getUsersHandler)
   .post(createNewUserHandler);

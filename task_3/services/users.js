@@ -38,7 +38,6 @@ const pushNewUser = (body) => {
 
 const updateUserInDatabase = (id, login, password, age) => {
   const { users } = db;
-  console.log(id);
   if (users.some((user) => user.id === id && !user.isDeleted)) {
     const index = users.indexOf(users.find((user) => user.id === id));
 

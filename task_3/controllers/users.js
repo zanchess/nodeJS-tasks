@@ -20,7 +20,7 @@ const getUsersHandler = (req, res) => {
   if (loginSubstring && limit) {
     const limetedUsersCollection = getSortAndLimitUsers(loginSubstring, limit);
     res.status(200);
-    res.send(limetedUsersCollection);
+    res.send(JSON.stringify(limetedUsersCollection));
   } else {
     const users = getUsers();
     res.status(200);
@@ -37,6 +37,7 @@ const getUserByIdHandler = (req, res) => {
 };
 
 const createNewUserHandler = (req, res) => {
+  console.log(res.body);
   const users = pushNewUser(req.body);
 
   res.status(200);
@@ -44,6 +45,7 @@ const createNewUserHandler = (req, res) => {
 };
 
 const updateUserHandler = (req, res) => {
+  console.log(req.body);
   const { id } = req.params;
   const { login, password, age } = req.body;
 
