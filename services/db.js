@@ -31,6 +31,20 @@ const db = {
       isDeleted: false,
     },
     {
+      id: '1b',
+      login: 'Alexis',
+      password: 'qwerty',
+      age: '18',
+      isDeleted: false,
+    },
+    {
+      id: '1c',
+      login: 'Alexandr',
+      password: 'qwerty',
+      age: '27',
+      isDeleted: false,
+    },
+    {
       id: uuidv4(),
       login: 'Yan',
       password: '12345678',

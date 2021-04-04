@@ -1,22 +1,16 @@
 import User from '../utils/createUser';
 import db from './db';
+import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
 
 const getUsers = () => {
   const { users } = db;
   return users;
 };
 
-const getAutoSuggestUsers = (loginSubstring, limit) => {
-  const { users } = db;
-  const limitedUsers = users.slice(0, +limit);
-
-  return limitedUsers;
-};
-
 const mainPage = () => {
   const message = 'Main page';
 
-  return message;
+  return { message };
 };
 
 const findUserById = (id) => {
@@ -31,10 +25,10 @@ const pushNewUser = (body) => {
   const { users } = db;
 
   if (users.some((user) => user.login === login && !user.isDeleted)) {
-    return 'This user already created';
+    return { message: 'This user already created' };
   }
   if (users.some((user) => user.login === login && user.isDeleted)) {
-    return 'This user already was deleted';
+    return { message: 'This user already was deleted' };
   }
   const newUser = new User(login, password, age);
   users.push(newUser);
@@ -52,7 +46,7 @@ const updateUserInDatabase = (id, login, password, age) => {
     users[index] = newUser;
     return users;
   }
-  return 'Users not found or was deleted';
+  return { message: 'Users not found or was deleted' };
 };
 
 const setDeletedUser = (id) => {
@@ -62,7 +56,14 @@ const setDeletedUser = (id) => {
     user.isDeleted = true;
     return users;
   }
-  return 'Users not found or was deleted';
+  return { message: 'Users not found or was deleted' };
+};
+
+const getSortAndLimitUsers = (substr, limit) => {
+  const { users } = db;
+  const limetedUsersCollection = getAutoSuggestUsers(substr, limit, users);
+
+  return limetedUsersCollection;
 };
 
 export {
@@ -72,5 +73,5 @@ export {
   pushNewUser,
   updateUserInDatabase,
   setDeletedUser,
-  getAutoSuggestUsers,
+  getSortAndLimitUsers,
 };

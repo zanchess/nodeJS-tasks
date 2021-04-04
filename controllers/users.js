@@ -5,7 +5,7 @@ import {
   pushNewUser,
   updateUserInDatabase,
   setDeletedUser,
-  getAutoSuggestUsers,
+  getSortAndLimitUsers,
 } from '../services/users';
 
 const getMainPageHandler = (req, res) => {
@@ -18,14 +18,14 @@ const getUsersHandler = (req, res) => {
   const { loginSubstring, limit } = req.query;
 
   if (loginSubstring && limit) {
-    const limitedUsers = getAutoSuggestUsers(loginSubstring, limit);
-
+    const limetedUsersCollection = getSortAndLimitUsers(loginSubstring, limit);
     res.status(200);
-    res.send(limitedUsers);
+    res.send(limetedUsersCollection);
+  } else {
+    const users = getUsers();
+    res.status(200);
+    res.send(JSON.stringify(users));
   }
-  const users = getUsers();
-  res.status(200);
-  res.send(JSON.stringify(users));
 };
 
 const getUserByIdHandler = (req, res) => {
