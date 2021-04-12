@@ -12,7 +12,7 @@ import {
   createNewUserHandler,
   updateUserHandler,
   deleteUserHandler,
-} from './task_3/controllers/users';
+} from './task_2/controllers/users';
 
 dotenv.config();
 
