@@ -13,10 +13,11 @@ import {
   updateUserHandler,
   deleteUserHandler,
 } from './task_3/controllers/users';
-
+import orm from './task_3/data-access/db';
 dotenv.config();
 
 // Create server
+orm.init();
 const app = express();
 const port = process.env.LOCAL_HOST || 3001;
 const router = express.Router();
@@ -44,9 +45,13 @@ router.route('/users/:id')
 router.route('/')
   .get(getMainPageHandler);
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err);
-  }
-  return console.log(`server is listening on ${port} click link: \x1b[36m http://localhost:${port} \x1b[0m `);
-});
+orm.db.sync().then(() => {
+  app.listen(port, (err) => {
+    if (err) {
+      return console.log('something bad happened', err);
+    }
+    return console.log(`server is listening on ${port} click link: \x1b[36m http://localhost:${port} \x1b[0m `);
+  });
+})
+
+
