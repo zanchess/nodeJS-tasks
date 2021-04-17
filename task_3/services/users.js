@@ -1,11 +1,7 @@
 import User from '../utils/createUser';
-import db from './db';
 import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
+import  Users from '../model/users';
 
-const getUsers = () => {
-  const { users } = db;
-  return users;
-};
 
 const mainPage = () => {
   const message = 'Main page';
@@ -13,38 +9,20 @@ const mainPage = () => {
   return { message };
 };
 
+const getUsers = () => {
+  return  Users.findAll();
+};
+
 const findUserById = (id) => {
-  const { users } = db;
-  const userInfoById = users.find((user) => user.id === id && !user.isDeleted);
-
-  return userInfoById;
+  return Users.findByPk(id);
 };
 
-const pushNewUser = (login, password, age) => {
-  const { users } = db;
-
-  if (users.some((user) => user.login === login && !user.isDeleted)) {
-    return { message: 'This user already created' };
-  }
-  if (users.some((user) => user.login === login && user.isDeleted)) {
-    return { message: 'This user already was deleted' };
-  }
-  const newUser = new User(login, password, age);
-  users.push(newUser);
-
-  return users;
+const pushNewUser = (user) => {
+  return  Users.create({...user});
 };
 
-const updateUserInDatabase = (id, login, password, age) => {
-  const { users } = db;
-  if (users.some((user) => user.id === id && !user.isDeleted)) {
-    const index = users.indexOf(users.find((user) => user.id === id));
-
-    const newUser = new User(id, login, password, age);
-    users[index] = newUser;
-    return users;
-  }
-  return { message: 'Users not found or was deleted' };
+const updateUserInDatabase = (id, user) => {
+  return User.update(user, { where: { id } });
 };
 
 const setDeletedUser = (id) => {

@@ -1,25 +1,35 @@
-import orm from '../data-access/db'
-import {Sequelize} from "sequelize";
+const { Sequelize, DataTypes } = require('sequelize');
+import sequelize from '../data-access/db';
 
-
-const Users = orm.define('users', {
+const Users = sequelize.define('User', {
   id: {
-    type: Sequelize.UUID,
+    type: DataTypes.UUID,
     primaryKey: true,
-    autoIncrement: true
+    defaultValue: Sequelize.UUIDV4,
+    allowNull: false
   },
   login: {
-    type: Sequelize.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   password: {
-    type: Sequelize.PASSWORD
+    type: DataTypes.STRING,
+    allowNull: false
   },
   age: {
-    type: Sequelize.INTEGER
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
-  isDelete: {
-    type: Sequelize.BOOLEAN
+  is_deleted: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
   }
+}, {
+  tableName: 'users',
+  createdAt: false,
+  updatedAt: false,
+  is_deleted: 'isDeleted'
 });
 
 export default Users;

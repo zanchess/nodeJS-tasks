@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51c29057-0861-441f-a427-d2c9215b9646" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_3/controllers/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/task_3/controllers/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_3/data-access/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/task_3/data-access/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_3/model/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/task_3/model/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_3/services/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/task_3/services/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_3/utils/createUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/task_3/utils/createUser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +26,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/index.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/task_3/controllers/users.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/task_3/utils/createUser.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/task_3/data-access/db.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/task_3/services/users.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/task_3/model/users.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/task_3/utils/get-auto-suggest-users.js" root0="SKIP_INSPECTION" />
   </component>
   <component name="PackageJsonUpdateNotifier">
@@ -103,6 +114,8 @@
       <workItem from="1618471076789" duration="842000" />
       <workItem from="1618472099912" duration="725000" />
       <workItem from="1618649281530" duration="5344000" />
+      <workItem from="1618670528016" duration="1966000" />
+      <workItem from="1618673265941" duration="12626000" />
     </task>
     <servers />
   </component>

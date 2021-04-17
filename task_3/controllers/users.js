@@ -23,75 +23,69 @@ const getMainPageHandler = (req, res) => {
   }
 };
 
-const getUsersHandler = (req, res) => {
+const getUsersHandler = async (req, res) => {
   const { loginSubstring, limit } = req.query;
+  if (loginSubstring && limit) {
+    const limetedUsersCollection = getSortAndLimitUsers(loginSubstring, limit);
 
-  try {
-    if (loginSubstring && limit) {
-      const limetedUsersCollection = getSortAndLimitUsers(loginSubstring, limit);
+    res.status(200);
+    res.send(JSON.stringify(limetedUsersCollection));
+  } else {
+    try {
+      const allUsers =  await getUsers();
 
-      res.status(200);
-      res.send(JSON.stringify(limetedUsersCollection));
-    } else {
-      const users = getUsers();
-      res.status(200);
-      res.send(JSON.stringify(users));
+      await res.status(200);
+      await res.json(allUsers);
+    } catch (err) {
+      res.status(404);
+      res.send(err);
     }
-  } catch (err) {
-    if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
-    }
+
   }
 };
 
-const getUserByIdHandler = (req, res) => {
+const getUserByIdHandler = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const userInfo = findUserById(id);
+    const userById =  await findUserById(id);;
 
-    res.status(200);
-    res.send(JSON.stringify(userInfo));
+    await res.status(200);
+    await res.json(userById);
+
   } catch (err) {
-    if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
-    }
+    res.status(404);
+    res.json(err);
   }
 };
 
 const createNewUserHandler = async (req, res) => {
-  const { login, password, age } = req.body;
-
+  const user = req.body;
   try {
-    await userSchema.validateAsync({ login, password, age });
-    const users = pushNewUser(login, password, age);
+    const newUser = await pushNewUser(user);
 
-    res.status(200);
-    res.send(JSON.stringify(users));
+    await res.status(200);
+    await res.json(newUser);
   } catch (err) {
     if (!err.statusCode) {
       res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
     }
   }
 };
 
 const updateUserHandler = async (req, res) => {
   const { id } = req.params;
-  const { login, password, age } = req.body;
+  const user = req.body;
 
   try {
-    await userSchema.validateAsync({ login, password, age });
-    const users = updateUserInDatabase(id, login, password, age);
+    const users = updateUserInDatabase(id, user);
 
     res.status(200);
-    res.send(JSON.stringify(users));
+    res.json(users);
   } catch (err) {
     if (!err.statusCode) {
       res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
+      res.json({ message: 'Error' });
     }
   }
 };

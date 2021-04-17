@@ -13,11 +13,11 @@ import {
   updateUserHandler,
   deleteUserHandler,
 } from './task_3/controllers/users';
-import orm from './task_3/data-access/db';
+import sequelize from './task_3/data-access/db'
+
 dotenv.config();
 
 // Create server
-orm.init();
 const app = express();
 const port = process.env.LOCAL_HOST || 3001;
 const router = express.Router();
@@ -45,7 +45,7 @@ router.route('/users/:id')
 router.route('/')
   .get(getMainPageHandler);
 
-orm.db.sync().then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(port, (err) => {
     if (err) {
       return console.log('something bad happened', err);
