@@ -1,4 +1,3 @@
-import userSchema from '../schemas/validation';
 import {
   findUserById,
   getUsers,
@@ -48,7 +47,7 @@ const getUserByIdHandler = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const userById =  await findUserById(id);;
+    const userById =  await findUserById(id);
 
     await res.status(200);
     await res.json(userById);
