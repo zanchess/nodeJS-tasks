@@ -22,17 +22,11 @@ const pushNewUser = (user) => {
 };
 
 const updateUserInDatabase = (id, user) => {
-  return User.update(user, { where: { id } });
+  return Users.update(user, { where: { id } });
 };
 
-const setDeletedUser = (id) => {
-  const { users } = db;
-  if (users.some((user) => user.id === id && !user.isDeleted)) {
-    const user = users.find((item) => item.id === id);
-    user.isDeleted = true;
-    return users;
-  }
-  return { message: 'Users not found or was deleted' };
+const deleteUser = (id) => {
+  return  Users.update({ is_deleted: true }, { where: { id } });
 };
 
 const getSortAndLimitUsers = (substr, limit) => {
@@ -48,6 +42,6 @@ export {
   findUserById,
   pushNewUser,
   updateUserInDatabase,
-  setDeletedUser,
+  deleteUser,
   getSortAndLimitUsers,
 };
