@@ -5,14 +5,14 @@ import {
   pushNewUser,
   updateUserInDatabase,
   deleteUser,
-  getSortAndLimitUsers,
 } from '../services/users';
+import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
 
 const getMainPageHandler = (req, res) => {
   try {
     const message = mainPage();
 
-    res.status(201);
+    res.status(200);
     res.send(message);
   } catch (err) {
     if (!err.statusCode) {
@@ -25,15 +25,16 @@ const getMainPageHandler = (req, res) => {
 const getUsersHandler = async (req, res) => {
   const { loginSubstring, limit } = req.query;
   if (loginSubstring && limit) {
-    const limetedUsersCollection = getSortAndLimitUsers(loginSubstring, limit);
+    const allUsers =  await getUsers();
+    const limetedUsersCollection =  await getAutoSuggestUsers(loginSubstring, limit, res.json(allUsers));
 
-    res.status(201);
-    res.send(JSON.stringify(limetedUsersCollection));
+    res.status(200);
+    res.send(limetedUsersCollection);
   } else {
     try {
       const allUsers =  await getUsers();
 
-      await res.status(201);
+      await res.status(200);
       await res.json(allUsers);
     } catch (err) {
       res.status(404);
@@ -49,7 +50,7 @@ const getUserByIdHandler = async (req, res) => {
   try {
     const userById =  await findUserById(id);
 
-    await res.status(201);
+    await res.status(200);
     await res.json(userById);
 
   } catch (err) {
@@ -63,7 +64,7 @@ const createNewUserHandler = async (req, res) => {
   try {
     const newUser = await pushNewUser(user);
 
-    await res.status(201);
+    await res.status(200);
     await res.json(newUser);
   } catch (err) {
     if (!err.statusCode) {

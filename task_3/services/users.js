@@ -1,5 +1,3 @@
-import User from '../utils/createUser';
-import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
 import  Users from '../model/users';
 
 
@@ -29,13 +27,6 @@ const deleteUser = (id) => {
   return  Users.update({ is_deleted: true }, { where: { id } });
 };
 
-const getSortAndLimitUsers = (substr, limit) => {
-  const { users } = db;
-  const limetedUsersCollection = getAutoSuggestUsers(substr, limit, users);
-
-  return limetedUsersCollection;
-};
-
 export {
   getUsers,
   mainPage,
@@ -43,5 +34,4 @@ export {
   pushNewUser,
   updateUserInDatabase,
   deleteUser,
-  getSortAndLimitUsers,
 };
