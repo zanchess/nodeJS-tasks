@@ -7,17 +7,18 @@ import {
   deleteUser,
 } from '../services/users';
 import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
+import CONFIGS from '../configs/config';
 
 const getMainPageHandler = (req, res) => {
   try {
     const message = mainPage();
 
-    res.status(200);
+    res.status(CONFIGS.ERRORS.OK);
     res.send(message);
   } catch (err) {
     if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
+      res.send({ message: 'Error' });
     }
   }
 };
@@ -28,16 +29,16 @@ const getUsersHandler = async (req, res) => {
     const allUsers =  await getUsers();
     const limetedUsersCollection =  await getAutoSuggestUsers(loginSubstring, limit, res.json(allUsers));
 
-    res.status(200);
+    res.status(CONFIGS.ERRORS.OK);
     res.send(limetedUsersCollection);
   } else {
     try {
       const allUsers =  await getUsers();
 
-      await res.status(200);
-      await res.json(allUsers);
+      await res.status(CONFIGS.ERRORS.OK);
+      await res.send(allUsers);
     } catch (err) {
-      res.status(404);
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
       res.send(err);
     }
 
@@ -50,11 +51,11 @@ const getUserByIdHandler = async (req, res) => {
   try {
     const userById =  await findUserById(id);
 
-    await res.status(200);
-    await res.json(userById);
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send(userById);
 
   } catch (err) {
-    res.status(404);
+    res.status(CONFIGS.ERRORS.NOT_FOUND);
     res.json(err);
   }
 };
@@ -64,11 +65,11 @@ const createNewUserHandler = async (req, res) => {
   try {
     const newUser = await pushNewUser(user);
 
-    await res.status(200);
-    await res.json(newUser);
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send(newUser);
   } catch (err) {
     if (!err.statusCode) {
-      res.status(500);
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
     }
   }
 };
@@ -81,11 +82,11 @@ const updateUserHandler = async (req, res) => {
     const updatedUser = await updateUserInDatabase(id, user);
     await console.log(updatedUser);
 
-    await res.status(201);
-    await res.json({message: 'User was updated'});
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send({message: 'User was updated'});
   } catch (err) {
     if (!err.statusCode) {
-      res.status(500);
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
     }
   }
 };
@@ -96,11 +97,11 @@ const deleteUserHandler = async (req, res) => {
   try {
     const updatedUsers = await deleteUser(id);
 
-    await res.status(201);
-    await res.json({message: 'User was deleted'});
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send({message: 'User was deleted'});
   } catch (err) {
     if (!err.statusCode) {
-      res.status(404);
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
     }
   }
 };

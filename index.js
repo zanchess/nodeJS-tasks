@@ -24,8 +24,7 @@ const router = express.Router();
 
 // Middlewears
 app.use(router);
-router.use('/users', bodyParser.json());
-router.use('/users/:id', bodyParser.json());
+app.use( bodyParser.json() );
 router.use(cors());
 router.use((req, res, next) => {
   res.header('Content-Type', 'application/json');
