@@ -30,9 +30,9 @@ const port = process.env.LOCAL_HOST || 3001;
 const router = express.Router();
 
 // Middlewears
-app.use(router);
 app.use( bodyParser.json() );
-router.use(cors());
+app.use(cors());
+app.use(router);
 router.use((req, res, next) => {
   res.header('Content-Type', 'application/json');
   next();

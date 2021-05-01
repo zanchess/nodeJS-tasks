@@ -1,5 +1,11 @@
-
 import CONFIGS from '../configs/config';
+import {
+  getGroups,
+  findGroupById,
+  pushNewGroup,
+  updateGroupInDatabase,
+  deleteGroup
+} from '../services/group';
 
 
 const getGroupsHandler = async (req, res) => {
@@ -31,6 +37,7 @@ const getGroupByIdHandler = async (req, res) => {
 
 const createNewGroupHandler = async (req, res) => {
   const group = req.body;
+
   try {
     const newGroup = await pushNewGroup(group);
 
