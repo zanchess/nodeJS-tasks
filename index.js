@@ -31,8 +31,12 @@ router.use((req, res, next) => {
   next();
 });
 
-// Route handling
+// Route handling for users
 router.route('/users')
+  .get(getUsersHandler)
+  .post(createNewUserHandler);
+
+router.route('/groups')
   .get(getUsersHandler)
   .post(createNewUserHandler);
 
@@ -40,6 +44,13 @@ router.route('/users/:id')
   .get(getUserByIdHandler)
   .put(updateUserHandler)
   .delete(deleteUserHandler);
+
+// Route handling for groups
+router.route('/groups');
+
+router.route('/groups/:id');
+
+router.route('/groupes/:id');
 
 router.route('/')
   .get(getMainPageHandler);
