@@ -26,7 +26,7 @@ const Groups = sequelize.define('Group', {
     defaultValue: PERMISSION_TYPES.READ
   }
 }, {
-  tableName: 'group',
+  tableName: 'groups',
   createdAt: false,
   updatedAt: false
 });
