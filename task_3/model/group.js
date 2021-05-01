@@ -9,7 +9,7 @@ const PERMISSION_TYPES = {
   UPLOAD_SHARE: 'UPLOAD_SHARE'
 };
 
-const Group = sequelize.define('Group', {
+const Groups = sequelize.define('Group', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
@@ -31,5 +31,5 @@ const Group = sequelize.define('Group', {
   updatedAt: false
 });
 
-export default Group;
+export default Groups;
 
