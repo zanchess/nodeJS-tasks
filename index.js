@@ -13,6 +13,13 @@ import {
   updateUserHandler,
   deleteUserHandler,
 } from './task_3/controllers/users';
+import {
+  getGroupsHandler,
+  getGroupByIdHandler,
+  createNewGroupHandler,
+  updateGroupHandler,
+  deleteGroupHandler
+} from './task_3/controllers/group';
 import sequelize from './task_3/data-access/db'
 
 dotenv.config();
@@ -36,21 +43,20 @@ router.route('/users')
   .get(getUsersHandler)
   .post(createNewUserHandler);
 
-router.route('/groups')
-  .get(getUsersHandler)
-  .post(createNewUserHandler);
-
 router.route('/users/:id')
   .get(getUserByIdHandler)
   .put(updateUserHandler)
   .delete(deleteUserHandler);
 
 // Route handling for groups
-router.route('/groups');
+router.route('/groups')
+  .get(getGroupsHandler)
+  .post(createNewGroupHandler);
 
-router.route('/groups/:id');
-
-router.route('/groupes/:id');
+router.route('/groups/:id')
+  .get(getGroupByIdHandler)
+  .put(updateGroupHandler)
+  .delete(deleteGroupHandler);
 
 router.route('/')
   .get(getMainPageHandler);
