@@ -18,7 +18,9 @@ import {
   getGroupByIdHandler,
   createNewGroupHandler,
   updateGroupHandler,
-  deleteGroupHandler
+  deleteGroupHandler,
+  addUserToGroupErrorHandler,
+  addUserToGroupHandler
 } from './task_3/controllers/group';
 import sequelize from './task_3/data-access/db'
 
@@ -57,6 +59,9 @@ router.route('/groups/:id')
   .get(getGroupByIdHandler)
   .put(updateGroupHandler)
   .delete(deleteGroupHandler);
+
+router.route('/groups/:groupId/users')
+  .put(addUserToGroupHandler);
 
 router.route('/')
   .get(getMainPageHandler);

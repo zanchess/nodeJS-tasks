@@ -4,7 +4,8 @@ import {
   findGroupById,
   pushNewGroup,
   updateGroupInDatabase,
-  deleteGroup
+  deleteGroup,
+  addUsersToGroup,
 } from '../services/group';
 
 
@@ -80,6 +81,20 @@ const deleteGroupHandler = async (req, res) => {
     }
   }
 };
+
+const addUserToGroupHandler = async (req, res, next) => {
+  try {
+    const result = await addUsersToGroup(req.params.id, req.body.userIds);
+    if (result) {
+      res.status(CONFIGS.ERRORS.SUCCESFULL);
+      res.status({message: 'user added to group'});
+    } else {
+      res.status(ONFIGS.ERRORS.NOT_FOUND);
+    }
+  } catch (e) {
+    return next(e);
+  }
+}
 
 export {
   getGroupsHandler,

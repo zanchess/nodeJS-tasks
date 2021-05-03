@@ -5,7 +5,7 @@ import Groups from './group';
 
 
 
-const userGroups = sequelize.define(
+const UserGroups = sequelize.define(
   'userGroup',
   {
     user_id: {
@@ -31,5 +31,5 @@ const userGroups = sequelize.define(
 Users.belongsToMany(Groups, { through: UserGroup });
 Groups.belongsToMany(Users, { through: UserGroup });
 
-export default userGroups;
+export default UserGroups;
 

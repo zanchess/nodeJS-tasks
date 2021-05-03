@@ -1,4 +1,5 @@
 import  Groups from '../model/group';
+import UserGroups from '../model/userGroup';
 
 const getGroups = () => {
   return  Groups.findAll();
@@ -19,6 +20,10 @@ const updateGroupInDatabase = (id, group) => {
 const deleteGroup = (id) => {
   return Groups.destroy({ where: { id } });
 };
+
+const addUsersToGroup = (id, userIds) => {
+  return  UserGroups.addUsersToGroup(id, userIds);
+}
 
 export {
   getGroups,
