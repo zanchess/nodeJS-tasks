@@ -4,7 +4,8 @@
   "description": "\"My node js learning\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --exec babel-node index.js",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,27 @@
   "bugs": {
     "url": "https://github.com/zanchess/nodeJS-tasks/issues"
   },
-  "homepage": "https://github.com/zanchess/nodeJS-tasks#readme"
+  "homepage": "https://github.com/zanchess/nodeJS-tasks#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "jui": "^2.0.3",
+    "jui-chart": "^2.0.4",
+    "jui-core": "^2.0.4",
+    "jui-grid": "^2.0.2",
+    "uuid": "^8.3.2"
+  }
 }

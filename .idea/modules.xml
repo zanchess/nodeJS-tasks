@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/node_js-gmp.iml" filepath="$PROJECT_DIR$/.idea/node_js-gmp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/nodeJS-tasks.iml" filepath="$PROJECT_DIR$/.idea/nodeJS-tasks.iml" />
     </modules>
   </component>
 </project>
