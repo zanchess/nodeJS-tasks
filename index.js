@@ -12,7 +12,8 @@ import {
   createNewUserHandler,
   updateUserHandler,
   deleteUserHandler,
-} from './task_2/controllers/users';
+} from './task_3/controllers/users';
+import sequelize from './task_3/data-access/db'
 
 dotenv.config();
 
@@ -23,8 +24,7 @@ const router = express.Router();
 
 // Middlewears
 app.use(router);
-router.use('/users', bodyParser.json());
-router.use('/users/:id', bodyParser.json());
+app.use( bodyParser.json() );
 router.use(cors());
 router.use((req, res, next) => {
   res.header('Content-Type', 'application/json');
@@ -44,9 +44,13 @@ router.route('/users/:id')
 router.route('/')
   .get(getMainPageHandler);
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err);
-  }
-  return console.log(`server is listening on ${port} click link: \x1b[36m http://localhost:${port} \x1b[0m `);
-});
+sequelize.sync({ force: true }).then(() => {
+  app.listen(port, (err) => {
+    if (err) {
+      return console.log('something bad happened', err);
+    }
+    return console.log(`server is listening on ${port} click link: \x1b[36m http://localhost:${port} \x1b[0m `);
+  });
+})
+
+

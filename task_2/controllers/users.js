@@ -1,113 +1,107 @@
-import userSchema from '../schemas/validation';
 import {
   findUserById,
   getUsers,
   mainPage,
   pushNewUser,
   updateUserInDatabase,
-  setDeletedUser,
-  getSortAndLimitUsers,
+  deleteUser,
 } from '../services/users';
+import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
+import CONFIGS from '../configs/config';
 
 const getMainPageHandler = (req, res) => {
   try {
     const message = mainPage();
 
-    res.status(200);
+    res.status(CONFIGS.ERRORS.OK);
     res.send(message);
   } catch (err) {
     if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
+      res.send({ message: 'Error' });
     }
   }
 };
 
-const getUsersHandler = (req, res) => {
+const getUsersHandler = async (req, res) => {
   const { loginSubstring, limit } = req.query;
+  if (loginSubstring && limit) {
+    const allUsers =  await getUsers();
+    const limetedUsersCollection =  await getAutoSuggestUsers(loginSubstring, limit, res.json(allUsers));
 
-  try {
-    if (loginSubstring && limit) {
-      const limetedUsersCollection = getSortAndLimitUsers(loginSubstring, limit);
+    res.status(CONFIGS.ERRORS.OK);
+    res.send(limetedUsersCollection);
+  } else {
+    try {
+      const allUsers =  await getUsers();
 
-      res.status(200);
-      res.send(JSON.stringify(limetedUsersCollection));
-    } else {
-      const users = getUsers();
-      res.status(200);
-      res.send(JSON.stringify(users));
+      await res.status(CONFIGS.ERRORS.OK);
+      await res.send(allUsers);
+    } catch (err) {
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
+      res.send(err);
     }
-  } catch (err) {
-    if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
-    }
+
   }
 };
 
-const getUserByIdHandler = (req, res) => {
+const getUserByIdHandler = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const userInfo = findUserById(id);
+    const userById =  await findUserById(id);
 
-    res.status(200);
-    res.send(JSON.stringify(userInfo));
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send(userById);
+
   } catch (err) {
-    if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
-    }
+    res.status(CONFIGS.ERRORS.NOT_FOUND);
+    res.json(err);
   }
 };
 
 const createNewUserHandler = async (req, res) => {
-  const { login, password, age } = req.body;
-
+  const user = req.body;
   try {
-    await userSchema.validateAsync({ login, password, age });
-    const users = pushNewUser(login, password, age);
+    const newUser = await pushNewUser(user);
 
-    res.status(200);
-    res.send(JSON.stringify(users));
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send(newUser);
   } catch (err) {
     if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
     }
   }
 };
 
 const updateUserHandler = async (req, res) => {
+  const user = req.body;
   const { id } = req.params;
-  const { login, password, age } = req.body;
 
   try {
-    await userSchema.validateAsync({ login, password, age });
-    const users = updateUserInDatabase(id, login, password, age);
+    const updatedUser = await updateUserInDatabase(id, user);
+    await console.log(updatedUser);
 
-    res.status(200);
-    res.send(JSON.stringify(users));
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send({message: 'User was updated'});
   } catch (err) {
     if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
     }
   }
 };
 
-const deleteUserHandler = (req, res) => {
+const deleteUserHandler = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const updatedUsers = setDeletedUser(id);
+    const updatedUsers = await deleteUser(id);
 
-    res.status(200);
-    res.send(JSON.stringify(updatedUsers));
+    await res.status(CONFIGS.ERRORS.OK);
+    await res.send({message: 'User was deleted'});
   } catch (err) {
     if (!err.statusCode) {
-      res.status(500);
-      res.send(JSON.stringify(JSON.stringify({ message: 'Error' })));
+      res.status(CONFIGS.ERRORS.NOT_FOUND);
     }
   }
 };
