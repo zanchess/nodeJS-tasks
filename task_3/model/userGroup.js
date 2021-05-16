@@ -28,8 +28,8 @@ const UserGroups = sequelize.define(
   { tableName: 'userGroup', timestamps: false }
 );
 
-Users.belongsToMany(Groups, { through: UserGroup });
-Groups.belongsToMany(Users, { through: UserGroup });
+Users.belongsToMany(Groups, { through:  UserGroups });
+Groups.belongsToMany(Users, { through:  UserGroups });
 
 export default UserGroups;
 

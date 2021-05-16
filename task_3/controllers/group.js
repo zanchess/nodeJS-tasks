@@ -101,5 +101,6 @@ export {
   getGroupByIdHandler,
   createNewGroupHandler,
   updateGroupHandler,
-  deleteGroupHandler
+  deleteGroupHandler,
+  addUserToGroupHandler
 };
