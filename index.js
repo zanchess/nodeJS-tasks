@@ -19,10 +19,12 @@ import {
   createNewGroupHandler,
   updateGroupHandler,
   deleteGroupHandler,
-  addUserToGroupErrorHandler,
-  addUserToGroupHandler
+  addUserToGroupHandler,
 } from './task_3/controllers/group';
-import sequelize from './task_3/data-access/db'
+import sequelize from './task_3/data-access/db';
+import logger from './task_3/logging/winstonLogger';
+import errorHandler from './task_3/middleware/errorHandling/errorHandling';
+import loggerMiddleweare from './task_3/middleware/logging/logging-middleware';
 
 dotenv.config();
 
@@ -32,9 +34,11 @@ const port = process.env.LOCAL_HOST || 3001;
 const router = express.Router();
 
 // Middlewears
-app.use( bodyParser.json() );
+app.use(loggerMiddleweare);
+app.use(bodyParser.json());
 app.use(cors());
 app.use(router);
+app.use(errorHandler);
 router.use((req, res, next) => {
   res.header('Content-Type', 'application/json');
   next();
@@ -69,10 +73,18 @@ router.route('/')
 sequelize.sync({ force: true }).then(() => {
   app.listen(port, (err) => {
     if (err) {
-      return console.log('something bad happened', err);
+      logger.error('something bad happened', err.message);
     }
-    return console.log(`server is listening on ${port} click link: \x1b[36m http://localhost:${port} \x1b[0m `);
+    logger.info(`server is listening on ${port} click link: \x1b[36m http://localhost:${port} \x1b[0m `);
   });
-})
+});
 
+process.on('uncaughtException', (error) => {
+  logger.error(`uncaughtException occured: ${error.message}`);
+  sequelize.destroy();
+  process.exit(1);
+});
 
+process.on('unhandledRejection', (reason) => {
+  logger.warn(`unhandled Promise Rejection occured: ${reason.message}`);
+});

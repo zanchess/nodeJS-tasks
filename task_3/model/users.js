@@ -6,30 +6,30 @@ const Users = sequelize.define('User', {
     type: DataTypes.UUID,
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4,
-    allowNull: false
+    allowNull: false,
   },
   login: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   age: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   is_deleted: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-    allowNull: false
+    allowNull: false,
   }
 }, {
   tableName: 'users',
   createdAt: false,
   updatedAt: false,
-  is_deleted: 'isDeleted'
+  is_deleted: 'isDeleted',
 });
 
 export default Users;

@@ -9,19 +9,19 @@ import {
 } from '../services/group';
 
 
-const getGroupsHandler = async (req, res) => {
+const getGroupsHandler = async (req, res, next) => {
   try {
     const allGroups = await getGroups();
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(allGroups);
   } catch (err) {
-    res.status(CONFIGS.ERRORS.NOT_FOUND);
-    res.send(err);
+    err.customErrorMessage = 'Couldn\'t get Groups';
+    return next(err);;
   }
 };
 
-const getGroupByIdHandler = async (req, res) => {
+const getGroupByIdHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -31,12 +31,12 @@ const getGroupByIdHandler = async (req, res) => {
     await res.send(groupById);
 
   } catch (err) {
-    res.status(CONFIGS.ERRORS.NOT_FOUND);
-    res.json(err);
+    err.customErrorMessage = `Group with id ${req.params.id} not found`;
+    return next(err);
   }
 };
 
-const createNewGroupHandler = async (req, res) => {
+const createNewGroupHandler = async (req, res, next) => {
   const group = req.body;
 
   try {
@@ -45,13 +45,12 @@ const createNewGroupHandler = async (req, res) => {
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(newGroup);
   } catch (err) {
-    if (!err.statusCode) {
-      res.status(CONFIGS.ERRORS.NOT_FOUND);
-    }
+    err.customErrorMessage = 'Group wasn\'t created';
+    return next(err);
   }
 };
 
-const updateGroupHandler = async (req, res) => {
+const updateGroupHandler = async (req, res, next) => {
   const group = req.body;
   const { id } = req.params;
 
@@ -61,13 +60,12 @@ const updateGroupHandler = async (req, res) => {
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({message: 'Group was updated'});
   } catch (err) {
-    if (!err.statusCode) {
-      res.status(CONFIGS.ERRORS.NOT_FOUND);
-    }
+    err.customErrorMessage = `Group with id ${id} not found`;
+    return next(err);
   }
 };
 
-const deleteGroupHandler = async (req, res) => {
+const deleteGroupHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -76,9 +74,8 @@ const deleteGroupHandler = async (req, res) => {
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({message: 'Group was deleted'});
   } catch (err) {
-    if (!err.statusCode) {
-      res.status(CONFIGS.ERRORS.NOT_FOUND);
-    }
+    err.customErrorMessage = `Group with id ${req.params.id} was not deleted`;
+    return next(err);
   }
 };
 
@@ -86,8 +83,8 @@ const addUserToGroupHandler = async (req, res, next) => {
   try {
     const result = await addUsersToGroup(req.params.id, req.body.userIds);
     if (result) {
-      res.status(CONFIGS.ERRORS.SUCCESFULL);
-      res.status({message: 'user added to group'});
+      res.status(CONFIGS.ERRORS.SUCCESSFULL);
+      res.send({message: 'user added to group'});
     } else {
       res.status(ONFIGS.ERRORS.NOT_FOUND);
     }
