@@ -22,7 +22,7 @@ const deleteGroup = (id) => {
 };
 
 const addUsersToGroup = (id, userIds) => {
-  return  UserGroups.addUsersToGroup(id, userIds);
+  return  Groups.addUsersToGroup(id, userIds);
 }
 
 export {
@@ -30,5 +30,6 @@ export {
   findGroupById,
   pushNewGroup,
   updateGroupInDatabase,
-  deleteGroup
+  deleteGroup,
+  addUsersToGroup,
 };

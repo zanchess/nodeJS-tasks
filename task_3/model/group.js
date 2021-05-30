@@ -31,5 +31,14 @@ const Groups = sequelize.define('Group', {
   updatedAt: false
 });
 
+Groups.addUsersToGroup = async (id, userIds) => {
+  const group = await Groups.findByPk(id);
+  if (group) {
+    await sequelize.transaction((transaction) => group.addUsers(userIds, { transaction }));
+    return true;
+  }
+  return group;
+};
+
 export default Groups;
 

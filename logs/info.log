@@ -1,0 +1,105 @@
+{"message":"server is listening on 3002 click link: \u001b[36m http://localhost:3002 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:29:05"}
+{"message":"server is listening on 3002 click link: \u001b[36m http://localhost:3002 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:30:47"}
+{"message":"server is listening on 3002 click link: \u001b[36m http://localhost:3002 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:36:26"}
+{"message":"server is listening on 3002 click link: \u001b[36m http://localhost:3002 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:38:19"}
+{"message":"server is listening on 3002 click link: \u001b[36m http://localhost:3002 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:39:28"}
+{"message":"server is listening on 3003 click link: \u001b[36m http://localhost:3003 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:40:05"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3003","level":"error","timestamp":"2021-05-30 17:40:08"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:40:43"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 17:45:12"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:45:13"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 17:45:27"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:45:27"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 17:46:33"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:46:34"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:46:54"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3004","level":"error","timestamp":"2021-05-30 17:46:54"}
+{"message":"unhandled Promise Rejection occured: type \"public.enum_groups_permissions\" does not exist","level":"warn","timestamp":"2021-05-30 17:47:10"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:47:10"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:55:17"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3004","level":"error","timestamp":"2021-05-30 17:55:17"}
+{"message":"server is listening on 3004 click link: \u001b[36m http://localhost:3004 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:56:43"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3004","level":"error","timestamp":"2021-05-30 17:56:43"}
+{"message":"server is listening on 3000 click link: \u001b[36m http://localhost:3000 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:57:07"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3000","level":"error","timestamp":"2021-05-30 17:57:07"}
+{"message":"server is listening on 3005 click link: \u001b[36m http://localhost:3005 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:57:37"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3005","level":"error","timestamp":"2021-05-30 17:57:37"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 17:57:55"}
+{"message":"server is listening on 3005 click link: \u001b[36m http://localhost:3005 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:57:55"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 17:58:10"}
+{"message":"server is listening on 3005 click link: \u001b[36m http://localhost:3005 \u001b[0m ","level":"info","timestamp":"2021-05-30 17:58:10"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:03:21"}
+{"message":"server is listening on 3005 click link: \u001b[36m http://localhost:3005 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:03:21"}
+{"message":"server is listening on 3005 click link: \u001b[36m http://localhost:3005 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:07:57"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3005","level":"error","timestamp":"2021-05-30 18:07:57"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:09:42"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:11:27"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3007","level":"error","timestamp":"2021-05-30 18:11:27"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:12:17"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:12:17"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:12:47"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:12:48"}
+{"message":"unhandled Promise Rejection occured: could not open relation with OID 1147146","level":"warn","timestamp":"2021-05-30 18:13:41"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:13:42"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:15:40"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:15:41"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:16:14"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:16:15"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:20:17"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:20:18"}
+{"message":"server is listening on 3007 click link: \u001b[36m http://localhost:3007 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:21:35"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3007","level":"error","timestamp":"2021-05-30 18:21:35"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:23:58"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:23:59"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:25:26"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:25:26"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:30:09"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:30:10"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:30:19"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:30:20"}
+{"message":"unhandled Promise Rejection occured: Cannot read property '1' of null","level":"warn","timestamp":"2021-05-30 18:30:38"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:30:39"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:44:42"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:44:42"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:45:32"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:45:32"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:47:54"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:47:55"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:48:39"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3008","level":"error","timestamp":"2021-05-30 18:48:39"}
+{"message":"unhandled Promise Rejection occured: type \"public.enum_groups_permissions\" does not exist","level":"warn","timestamp":"2021-05-30 18:48:58"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:48:58"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 18:52:59"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:53:00"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 18:53:50"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3008","level":"error","timestamp":"2021-05-30 18:53:50"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:09:20"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:09:20"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:14:43"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:14:44"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:21:03"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:21:04"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:32:37"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:32:38"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:35:12"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:35:12"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:36:10"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:36:10"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:36:40"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3008","level":"error","timestamp":"2021-05-30 19:36:40"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:38:18"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3008","level":"error","timestamp":"2021-05-30 19:38:18"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:38:37"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3008","level":"error","timestamp":"2021-05-30 19:38:37"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:38:44"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:38:44"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:39:53"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3008","level":"error","timestamp":"2021-05-30 19:39:53"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 19:51:12"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 19:51:12"}
+{"message":"unhandled Promise Rejection occured: getaddrinfo ENOTFOUND tai.db.elephantsql.com","level":"warn","timestamp":"2021-05-30 20:22:35"}
+{"message":"unhandled Promise Rejection occured: getaddrinfo ENOTFOUND tai.db.elephantsql.com","level":"warn","timestamp":"2021-05-30 20:22:35"}
+{"message":"unhandled Promise Rejection occured: Validation error","level":"warn","timestamp":"2021-05-30 20:24:53"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 20:24:54"}
+{"message":"server is listening on 3008 click link: \u001b[36m http://localhost:3008 \u001b[0m ","level":"info","timestamp":"2021-05-30 20:25:10"}
+{"message":"uncaughtException occured: listen EADDRINUSE: address already in use :::3008","level":"error","timestamp":"2021-05-30 20:25:10"}
