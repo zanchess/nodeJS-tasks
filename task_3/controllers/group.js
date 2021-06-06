@@ -79,7 +79,8 @@ const deleteGroupHandler = async (req, res, next) => {
 
 const addUserToGroupHandler = async (req, res, next) => {
   try {
-    const result = await addUsersToGroup(req.params.id, req.body.userIds);
+    const result = await addUsersToGroup(req.params.groupId, req.body.userIds);
+    console.log(req.params);
     if (result) {
       res.status(CONFIGS.ERRORS.SUCCESSFULL);
       res.send({ message: 'user added to group' });

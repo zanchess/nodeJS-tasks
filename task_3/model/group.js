@@ -13,7 +13,7 @@ const Groups = sequelize.define('Group', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
+    defaultValue: '23542da4-4f33-4f41-a99e-f6aa34dc9d23',
     allowNull: false,
   },
   name: {
@@ -30,14 +30,5 @@ const Groups = sequelize.define('Group', {
   createdAt: false,
   updatedAt: false,
 });
-
-Groups.addUsersToGroup = async (id, userIds) => {
-  const group = await Groups.findByPk(id);
-  if (group) {
-    await sequelize.transaction((transaction) => group.addUsers(userIds, { transaction }));
-    return true;
-  }
-  return group;
-};
 
 export default Groups;

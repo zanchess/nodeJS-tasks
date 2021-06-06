@@ -1,5 +1,6 @@
 import Groups from '../model/group';
 import logger from '../logging/winstonLogger';
+import sequelize from '../data-access/db';
 
 const getGroups = () => {
   logger.info('Service: executing getGroups');
@@ -26,9 +27,20 @@ const deleteGroup = (id) => {
   return Groups.destroy({ where: { id } });
 };
 
-const addUsersToGroup = (id, userIds) => {
-  logger.info(`Service: executing addUsersToGroup(groupId = ${id}, usersId = ${userIds})`);
-  return Groups.addUsersToGroup(id, userIds);
+const addUsersToGroup = async (groupId, usersId) => {
+  console.log(usersId);
+  logger.info(`Service: executing addUsersToGroup(groupId = ${groupId}, usersId = ${usersId})`);
+  try {
+    const group = await Groups.findByPk(groupId);
+    console.log(group);
+
+    if (group) {
+      await sequelize.transaction((transaction) => group.addUsers(usersId, { transaction }));
+    }
+    return group;
+  } catch (e) {
+    throw new Error(e);
+  }
 };
 
 export {
