@@ -24,14 +24,14 @@ const getMainPageHandler = (req, res, next) => {
 const getUsersHandler = async (req, res, next) => {
   const { loginSubstring, limit } = req.query;
   if (loginSubstring && limit) {
-    const allUsers =  await getUsers();
-    const limetedUsersCollection =  await getAutoSuggestUsers(loginSubstring, limit, res.json(allUsers));
+    const allUsers = await getUsers();
+    const limetedUsersCollection = await getAutoSuggestUsers(loginSubstring, limit, res.json(allUsers));
 
     res.status(CONFIGS.ERRORS.OK);
     res.send(limetedUsersCollection);
   } else {
     try {
-      const allUsers =  await getUsers();
+      const allUsers = await getUsers();
 
       await res.status(CONFIGS.ERRORS.OK);
       await res.send(allUsers);
@@ -39,7 +39,6 @@ const getUsersHandler = async (req, res, next) => {
       err.customErrorMessage = 'Couldn\'t retrieve Users';
       return next(err);
     }
-
   }
 };
 
@@ -47,11 +46,10 @@ const getUserByIdHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const userById =  await findUserById(id);
+    const userById = await findUserById(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(userById);
-
   } catch (err) {
     err.customErrorMessage = `User with id ${id} not found`;
     return next(err);
@@ -77,13 +75,12 @@ const updateUserHandler = async (req, res, next) => {
 
   try {
     const updatedUser = await updateUserInDatabase(id, user);
-    await console.log(updatedUser);
 
     await res.status(CONFIGS.ERRORS.OK);
-    await res.send({message: 'User was updated'});
+    await res.send({ message: 'User was updated' });
   } catch (err) {
     if (!err.statusCode) {
-      err.customErrorMessage =  `User with id ${id} not found`;
+      err.customErrorMessage = `User with id ${id} not found`;
       return next(err);
     }
   }
@@ -96,7 +93,7 @@ const deleteUserHandler = async (req, res, next) => {
     const updatedUsers = await deleteUser(id);
 
     await res.status(CONFIGS.ERRORS.OK);
-    await res.send({message: 'User was deleted'});
+    await res.send({ message: 'User was deleted' });
   } catch (err) {
     err.customErrorMessage = `User with id ${id} was not deleted`;
     return next(err);

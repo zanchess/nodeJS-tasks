@@ -1,4 +1,4 @@
-import {Sequelize, DataTypes} from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
 import sequelize from '../data-access/db';
 
 const Users = sequelize.define('User', {
@@ -24,7 +24,7 @@ const Users = sequelize.define('User', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
     allowNull: false,
-  }
+  },
 }, {
   tableName: 'users',
   createdAt: false,

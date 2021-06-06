@@ -1,6 +1,5 @@
-import  Users from '../model/users';
+import Users from '../model/users';
 import logger from '../logging/winstonLogger';
-
 
 const mainPage = () => {
   const message = 'Main page';
@@ -10,7 +9,7 @@ const mainPage = () => {
 
 const getUsers = () => {
   logger.info('Service: executing getUsers');
-  return  Users.findAll();
+  return Users.findAll();
 };
 
 const findUserById = (id) => {
@@ -20,7 +19,7 @@ const findUserById = (id) => {
 
 const pushNewUser = (user) => {
   logger.info(`Service: executing pushNewUser(group = ${JSON.stringify(user)})`);
-  return  Users.create({...user});
+  return Users.create({ ...user });
 };
 
 const updateUserInDatabase = (id, user) => {
@@ -29,8 +28,8 @@ const updateUserInDatabase = (id, user) => {
 };
 
 const deleteUser = (id) => {
-  logger.info(`Service: executing deleteUser(groupId = ${id}, usersId = ${userIds})`);
-  return  Users.update({ is_deleted: true }, { where: { id } });
+  logger.info(`Service: executing deleteUser(groupId = ${id}, usersId = ${id})`);
+  return Users.update({ is_deleted: true }, { where: { id } });
 };
 
 export {

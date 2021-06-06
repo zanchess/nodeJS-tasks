@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../data-access/db';
 import Users from './users';
 import Groups from './group';
@@ -28,6 +28,5 @@ const UserGroups = sequelize.define(
 
 Users.belongsToMany(Groups, { through: UserGroups });
 Groups.belongsToMany(Users, { through: UserGroups });
-
 
 export default UserGroups;
