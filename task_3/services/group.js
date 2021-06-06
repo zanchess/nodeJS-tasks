@@ -1,9 +1,9 @@
-import  Groups from '../model/group';
+import Groups from '../model/group';
 import logger from '../logging/winstonLogger';
 
 const getGroups = () => {
   logger.info('Service: executing getGroups');
-  return  Groups.findAll();
+  return Groups.findAll();
 };
 
 const findGroupById = (id) => {
@@ -13,7 +13,7 @@ const findGroupById = (id) => {
 
 const pushNewGroup = (group) => {
   logger.info(`Service: executing pushNewGroup(group = ${JSON.stringify(group)})`);
-  return  Groups.create({...group});
+  return Groups.create({ ...group });
 };
 
 const updateGroupInDatabase = (id, group) => {
@@ -28,8 +28,8 @@ const deleteGroup = (id) => {
 
 const addUsersToGroup = (id, userIds) => {
   logger.info(`Service: executing addUsersToGroup(groupId = ${id}, usersId = ${userIds})`);
-  return  Groups.addUsersToGroup(id, userIds);
-}
+  return Groups.addUsersToGroup(id, userIds);
+};
 
 export {
   getGroups,
@@ -37,5 +37,5 @@ export {
   pushNewGroup,
   updateGroupInDatabase,
   deleteGroup,
-  addUsersToGroup
+  addUsersToGroup,
 };

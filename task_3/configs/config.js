@@ -1,9 +1,9 @@
 const CONFIGS = {
-  ERRORS:{
+  ERRORS: {
     OK: 200,
     NOT_FOUND: 404,
     SUCCESSFULL: 204,
-  }
-}
+  },
+};
 
 export default CONFIGS;
