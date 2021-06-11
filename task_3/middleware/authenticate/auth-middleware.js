@@ -8,14 +8,14 @@ const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];
   if (!token) {
-    return res.status(401).send();
+    return res.status(CONFIGS.ERRORS.UNAUTHORIZED_ERROR).send({ message: 'Unexpected token' });
   }
 
   jwt.verify(token, CONFIGS.JWT_SECRET, (err, user) => {
     if (err) {
-      return res.status(403).send();
+      return res.status(CONFIGS.ERRORS.FORBIDDEN_ERROR).send({ message: 'Incorrect token' });
     }
-    console.log(req.user);
+
     req.user = user;
     next();
   });

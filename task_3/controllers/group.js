@@ -80,15 +80,16 @@ const deleteGroupHandler = async (req, res, next) => {
 const addUserToGroupHandler = async (req, res, next) => {
   try {
     const result = await addUsersToGroup(req.params.groupId, req.body.userIds);
-    console.log(req.params);
+
     if (result) {
       res.status(CONFIGS.ERRORS.SUCCESSFULL);
       res.send({ message: 'user added to group' });
     } else {
       res.status(CONFIGS.ERRORS.NOT_FOUND);
     }
-  } catch (e) {
-    return next(e);
+  } catch (err) {
+    err.customErrorMessage = `User wasn't add to group with ${req.params.groupId} and ${req.body.userIds} `;
+    return next(err);
   }
 };
 

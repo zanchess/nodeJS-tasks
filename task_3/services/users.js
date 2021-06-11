@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import Users from '../model/users';
 import logger from '../logging/winstonLogger';
 
