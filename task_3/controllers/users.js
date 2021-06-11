@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import {
   findUserById,
   getUsers,
@@ -5,6 +6,7 @@ import {
   pushNewUser,
   updateUserInDatabase,
   deleteUser,
+  authenticate,
 } from '../services/users';
 import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
 import CONFIGS from '../configs/config';
@@ -74,7 +76,7 @@ const updateUserHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const updatedUser = await updateUserInDatabase(id, user);
+    await updateUserInDatabase(id, user);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'User was updated' });
@@ -90,12 +92,28 @@ const deleteUserHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const updatedUsers = await deleteUser(id);
+    await deleteUser(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'User was deleted' });
   } catch (err) {
     err.customErrorMessage = `User with id ${id} was not deleted`;
+    return next(err);
+  }
+};
+
+const loginHandler = async (req, res, next) => {
+  const { login, password } = req.body;
+  try {
+    const user = await authenticate(login, password);
+    if (user) {
+      const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+      res.json(accessToken);
+    } else {
+      res.status(403).send();
+    }
+  } catch (err) {
+    err.customErrorMessage = 'User couldn\'t be found';
     return next(err);
   }
 };
@@ -107,4 +125,5 @@ export {
   createNewUserHandler,
   updateUserHandler,
   deleteUserHandler,
+  loginHandler,
 };

@@ -32,6 +32,19 @@ const deleteUser = (id) => {
   return Users.update({ is_deleted: true }, { where: { id } });
 };
 
+const getUserByLogin = (login) => {
+  logger.info(`Service: executing getUserByLogin(name = ${login})`);
+  return Users.findOne({ where: { login } }).then((user) => user.toJSON());
+};
+
+const authenticate = async (login, password) => {
+  const user = await getUserByLogin(login);
+  if (user && password === user.password) {
+    return user;
+  }
+  return null;
+};
+
 export {
   getUsers,
   mainPage,
@@ -39,4 +52,5 @@ export {
   pushNewUser,
   updateUserInDatabase,
   deleteUser,
+  authenticate,
 };

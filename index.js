@@ -12,6 +12,7 @@ import {
   createNewUserHandler,
   updateUserHandler,
   deleteUserHandler,
+  loginHandler,
 } from './task_3/controllers/users';
 import {
   getGroupsHandler,
@@ -25,6 +26,7 @@ import sequelize from './task_3/data-access/db';
 import logger from './task_3/logging/winstonLogger';
 import errorHandler from './task_3/middleware/errorHandling/errorHandling';
 import loggerMiddleweare from './task_3/middleware/logging/logging-middleware';
+import authMiddleware from './task_3/middleware/authenticate/auth-middleware';
 
 dotenv.config();
 
@@ -35,6 +37,7 @@ const router = express.Router();
 
 // Middlewears
 app.use(loggerMiddleweare);
+app.use(authMiddleware);
 app.use(bodyParser.json());
 app.use(cors());
 app.use(router);
@@ -66,6 +69,10 @@ router.route('/groups/:id')
 
 router.route('/groups/:groupId/users')
   .put(addUserToGroupHandler);
+
+// Route handling for logIn
+router.route('/login')
+  .post(loginHandler);
 
 router.route('/')
   .get(getMainPageHandler);

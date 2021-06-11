@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const authenticate = (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   if (['/login'].includes(req.path)) {
     return next();
   }
@@ -9,7 +9,7 @@ const authenticate = (req, res, next) => {
   if (!token) {
     return res.status(401).send();
   }
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
     if (err) {
       return res.status(403).send();
     }
@@ -18,4 +18,4 @@ const authenticate = (req, res, next) => {
   });
 };
 
-export default authenticate;
+export default authMiddleware;
