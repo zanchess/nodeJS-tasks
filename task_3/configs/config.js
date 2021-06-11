@@ -4,6 +4,8 @@ const CONFIGS = {
     NOT_FOUND: 404,
     SUCCESSFULL: 204,
   },
+  JWT_SECRET: 'dev-jwt',
+
 };
 
 export default CONFIGS;

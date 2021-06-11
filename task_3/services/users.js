@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import Users from '../model/users';
 import logger from '../logging/winstonLogger';
 
@@ -39,7 +40,8 @@ const getUserByLogin = (login) => {
 
 const authenticate = async (login, password) => {
   const user = await getUserByLogin(login);
-  if (user && password === user.password) {
+
+  if (user && user.password === password) {
     return user;
   }
   return null;

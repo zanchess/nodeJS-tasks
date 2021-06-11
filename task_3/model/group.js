@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../data-access/db';
 
 const PERMISSION_TYPES = {
@@ -13,7 +13,7 @@ const Groups = sequelize.define('Group', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
-    defaultValue: '23542da4-4f33-4f41-a99e-f6aa34dc9d23',
+    defaultValue: DataTypes.UUIDV4,
     allowNull: false,
   },
   name: {

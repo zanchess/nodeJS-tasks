@@ -27,6 +27,7 @@ import logger from './task_3/logging/winstonLogger';
 import errorHandler from './task_3/middleware/errorHandling/errorHandling';
 import loggerMiddleweare from './task_3/middleware/logging/logging-middleware';
 import authMiddleware from './task_3/middleware/authenticate/auth-middleware';
+import Users from './task_3/model/users';
 
 dotenv.config();
 
@@ -83,6 +84,11 @@ sequelize.sync({ force: true }).then(() => {
       logger.error('something bad happened', err.message);
     }
     logger.info(`server is listening on ${port} click link: \x1b[36m http://localhost:${port} \x1b[0m `);
+    Users.create({
+      login: 'sasha11',
+      password: 'qwerty',
+      age: '23',
+    });
   });
 });
 
