@@ -62,7 +62,6 @@ const createNewUserHandler = async (req, res, next) => {
   const user = req.body;
   try {
     const newUser = await pushNewUser(user);
-    console.log(newUser);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(newUser);
@@ -107,7 +106,7 @@ const loginHandler = async (req, res, next) => {
   const { login, password } = req.body;
   try {
     const user = await authenticate(login, password);
-    console.log(user);
+
     if (user) {
       const accessToken = jwt.sign(user, CONFIGS.JWT_SECRET, { expiresIn: 60 * 60 });
       res.json(`Bearer ${accessToken}`);

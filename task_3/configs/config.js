@@ -4,6 +4,7 @@ const CONFIGS = {
     NOT_FOUND: 404,
     SUCCESSFULL: 204,
     UNAUTHORIZED_ERROR: 401,
+    FORBIDDEN_ERROR: 403,
   },
   JWT_SECRET: 'dev-jwt',
 

@@ -28,11 +28,9 @@ const deleteGroup = (id) => {
 };
 
 const addUsersToGroup = async (groupId, usersId) => {
-  console.log(usersId);
   logger.info(`Service: executing addUsersToGroup(groupId = ${groupId}, usersId = ${usersId})`);
   try {
     const group = await Groups.findByPk(groupId);
-    console.log(group);
 
     if (group) {
       await sequelize.transaction((transaction) => group.addUsers(usersId, { transaction }));
