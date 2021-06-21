@@ -54,4 +54,5 @@ export {
   updateUserInDatabase,
   deleteUser,
   authenticate,
+  getUserByLogin,
 };

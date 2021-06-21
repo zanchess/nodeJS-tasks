@@ -6,6 +6,7 @@ const authMiddleware = (req, res, next) => {
     return next();
   }
   const authHeader = req.headers.authorization;
+  console.log(authHeader);
   const token = authHeader && authHeader.split(' ')[1];
   if (!token) {
     return res.status(CONFIGS.ERRORS.UNAUTHORIZED_ERROR).send({ message: 'Unexpected token' });
