@@ -1,16 +1,12 @@
 import CONFIGS from '../configs/config';
-import {
-  getGroups,
-  findGroupById,
-  pushNewGroup,
-  updateGroupInDatabase,
-  deleteGroup,
-  addUsersToGroup,
-} from '../services/group';
+import Groups from '../model/group';
+import GroupService from '../services/group';
+
+const groupService = new GroupService(Groups);
 
 const getGroupsHandler = async (req, res, next) => {
   try {
-    const allGroups = await getGroups();
+    const allGroups = await groupService.getGroups();
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(allGroups);
@@ -24,7 +20,7 @@ const getGroupByIdHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const groupById = await findGroupById(id);
+    const groupById = await groupService.findGroupById(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(groupById);
@@ -38,7 +34,7 @@ const createNewGroupHandler = async (req, res, next) => {
   const group = req.body;
 
   try {
-    const newGroup = await pushNewGroup(group);
+    const newGroup = await groupService.pushNewGroup(group);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(newGroup);
@@ -53,7 +49,7 @@ const updateGroupHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    await updateGroupInDatabase(id, group);
+    await groupService.updateGroupInDatabase(id, group);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'Group was updated' });
@@ -67,7 +63,7 @@ const deleteGroupHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    await deleteGroup(id);
+    await groupService.deleteGroup(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'Group was deleted' });
@@ -79,7 +75,7 @@ const deleteGroupHandler = async (req, res, next) => {
 
 const addUserToGroupHandler = async (req, res, next) => {
   try {
-    const result = await addUsersToGroup(req.params.groupId, req.body.userIds);
+    const result = await groupService.addUsersToGroup(req.params.groupId, req.body.userIds);
 
     if (result) {
       res.status(CONFIGS.ERRORS.SUCCESSFULL);
