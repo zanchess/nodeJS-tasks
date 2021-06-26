@@ -1,39 +1,22 @@
 import jwt from 'jsonwebtoken';
-import {
-  findUserById,
-  getUsers,
-  mainPage,
-  pushNewUser,
-  updateUserInDatabase,
-  deleteUser,
-  authenticate,
-} from '../services/users';
+import UserService from '../services/users';
 import getAutoSuggestUsers from '../utils/get-auto-suggest-users';
 import CONFIGS from '../configs/config';
+import Users from '../model/users';
 
-const getMainPageHandler = (req, res, next) => {
-  try {
-    const message = mainPage();
-
-    res.status(CONFIGS.ERRORS.OK);
-    res.send(message);
-  } catch (err) {
-    err.customErrorMessage = 'Couldn\'t retrieve main page';
-    return next(err);
-  }
-};
+const userService = new UserService(Users);
 
 const getUsersHandler = async (req, res, next) => {
   const { loginSubstring, limit } = req.query;
   if (loginSubstring && limit) {
-    const allUsers = await getUsers();
+    const allUsers = await userService.getUsers();
     const limetedUsersCollection = await getAutoSuggestUsers(loginSubstring, limit, res.json(allUsers));
 
     res.status(CONFIGS.ERRORS.OK);
     res.send(limetedUsersCollection);
   } else {
     try {
-      const allUsers = await getUsers();
+      const allUsers = await userService.getUsers();
 
       await res.status(CONFIGS.ERRORS.OK);
       await res.send(allUsers);
@@ -48,7 +31,7 @@ const getUserByIdHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const userById = await findUserById(id);
+    const userById = await userService.findUserById(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(userById);
@@ -61,7 +44,7 @@ const getUserByIdHandler = async (req, res, next) => {
 const createNewUserHandler = async (req, res, next) => {
   const user = req.body;
   try {
-    const newUser = await pushNewUser(user);
+    const newUser = await userService.pushNewUser(user);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send(newUser);
@@ -76,7 +59,7 @@ const updateUserHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    await updateUserInDatabase(id, user);
+    await userService.updateUser(id, user);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'User was updated' });
@@ -92,7 +75,7 @@ const deleteUserHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    await deleteUser(id);
+    await userService.deleteUser(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'User was deleted' });
@@ -105,7 +88,7 @@ const deleteUserHandler = async (req, res, next) => {
 const loginHandler = async (req, res, next) => {
   const { login, password } = req.body;
   try {
-    const user = await authenticate(login, password);
+    const user = await userService.authenticate(login, password);
 
     if (user) {
       const accessToken = jwt.sign(user, CONFIGS.JWT_SECRET, { expiresIn: 60 * 60 });
@@ -121,10 +104,10 @@ const loginHandler = async (req, res, next) => {
 
 export {
   getUsersHandler,
-  getMainPageHandler,
   getUserByIdHandler,
   createNewUserHandler,
   updateUserHandler,
   deleteUserHandler,
   loginHandler,
+  userService,
 };

@@ -75,9 +75,6 @@ router.route('/groups/:groupId/users')
 router.route('/login')
   .post(loginHandler);
 
-router.route('/')
-  .get(getMainPageHandler);
-
 sequelize.sync({ force: true }).then(() => {
   app.listen(port, (err) => {
     if (err) {
