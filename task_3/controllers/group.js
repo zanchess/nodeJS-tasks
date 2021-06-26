@@ -96,4 +96,5 @@ export {
   updateGroupHandler,
   deleteGroupHandler,
   addUserToGroupHandler,
+  groupService,
 };

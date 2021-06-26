@@ -1,5 +1,5 @@
 import Users from '../model/users';
-import { mockUsers, mockUser, mockCreatedUser } from './mockData';
+import { mockUsers, mockUser, mockCreatedUser } from '../__mocks__/mockedUserData';
 import {
   getUsersHandler,
   getUserByIdHandler,
@@ -34,7 +34,7 @@ describe('UserController', () => {
     jest.clearAllMocks();
   });
 
-  describe('User Controller', () => {
+  describe('User Controller tests', () => {
     it('should return all users and send 200 status code', async () => {
       const getAllUsersStub = jest.spyOn(userService, 'getUsers');
 
@@ -43,17 +43,6 @@ describe('UserController', () => {
       expect(getAllUsersStub).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.send).toHaveBeenCalledWith(mockUsers);
-    });
-
-    it('should return user with id', async () => {
-      const getAllUsersStub = jest.spyOn(userService, 'findUserById');
-      req.params = { id: 7 };
-
-      await getUserByIdHandler(req, res, next);
-
-      expect(getAllUsersStub).toHaveBeenCalledWith(req.params.id);
-      expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.send).toHaveBeenCalledWith(mockUser);
     });
 
     it('should return user with id', async () => {
@@ -90,22 +79,6 @@ describe('UserController', () => {
         is_deleted: false,
       };
       req.params = { id: 7 };
-
-      await updateUserHandler(req, res, next);
-
-      expect(getAllUsersStub).toHaveBeenCalledWith(req.params.id, req.body);
-      expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.send).toHaveBeenCalledWith({ message: 'User was updated' });
-    });
-
-    it('should update user', async () => {
-      const getAllUsersStub = jest.spyOn(userService, 'updateUser');
-      req.body = {
-        login: 'login123',
-        password: 'pass112',
-        age: 21,
-      };
-      req.params = { id: 1 };
 
       await updateUserHandler(req, res, next);
 
