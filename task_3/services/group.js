@@ -1,6 +1,6 @@
-import Groups from '../model/group';
 import logger from '../logging/winstonLogger';
 import sequelize from '../data-access/db';
+import Groups from '../model/userGroup';
 
 const getGroups = () => {
   logger.info('Service: executing getGroups');

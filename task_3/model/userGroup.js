@@ -8,3 +8,5 @@ Users.belongsToMany(Groups, {
 Groups.belongsToMany(Users, {
   through: 'UserGroups',
 });
+
+export default Groups;

@@ -74,7 +74,7 @@ const updateUserHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const updatedUser = await updateUserInDatabase(id, user);
+    await updateUserInDatabase(id, user);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'User was updated' });
@@ -90,7 +90,7 @@ const deleteUserHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const updatedUsers = await deleteUser(id);
+    await deleteUser(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'User was deleted' });

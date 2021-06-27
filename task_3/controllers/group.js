@@ -53,7 +53,7 @@ const updateGroupHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const updatedGroup = await updateGroupInDatabase(id, group);
+    await updateGroupInDatabase(id, group);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'Group was updated' });
@@ -67,7 +67,7 @@ const deleteGroupHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const deletedGruope = await deleteGroup(id);
+    await deleteGroup(id);
 
     await res.status(CONFIGS.ERRORS.OK);
     await res.send({ message: 'Group was deleted' });
